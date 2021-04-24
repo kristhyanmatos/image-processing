@@ -11,7 +11,7 @@ image_select_encoding = fr.face_encodings(image_select)[0]
 image_select_neymar = fr.load_image_file("images/neymar.jpg")
 image_select_neymar_encoding = fr.face_encodings(image_select_neymar)[0]
 
-# Banco de Dados
+# Data Base
 face_encodings_know = [image_select_encoding, image_select_neymar_encoding]
 face_names_know = ["Kristhyan", "Neymar"]
 

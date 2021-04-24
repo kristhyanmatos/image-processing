@@ -1,8 +1,8 @@
+# Filter link: https://scikit-image.org/docs/stable/auto_examples/applications/plot_face_detection.html#sphx-glr-auto-examples-applications-plot-face-detection-py
 from skimage import data
-from skimage.feature import Cascade
-
-import matplotlib.pyplot as plt
 from matplotlib import patches
+from skimage.feature import Cascade
+import matplotlib.pyplot as plt
 
 # Load the trained file from the module root.
 trained_file = data.lbp_frontal_face_cascade_filename()
@@ -17,25 +17,25 @@ from numpy import asarray
 file_image = Image.open("images/pp.jpg")
 
 # convert image to numpy array
-img = asarray(file_image)
+image = asarray(file_image)
 
 detected = detector.detect_multi_scale(
-    img=img, scale_factor=1.2, step_ratio=1, min_size=(60, 60), max_size=(500, 500)
+    img=image, scale_factor=1.2, step_ratio=1, min_size=(60, 60), max_size=(500, 500)
 )
 
-plt.imshow(img)
-img_desc = plt.gca()
+plt.imshow(image)
+iamge_shape = plt.gca()
 plt.set_cmap("gray")
 
 for patch in detected:
 
-    img_desc.add_patch(
+    iamge_shape.add_patch(
         patches.Rectangle(
             (patch["c"], patch["r"]),
             patch["width"],
             patch["height"],
             fill=False,
-            color="r",
+            color="g",
             linewidth=2,
         )
     )

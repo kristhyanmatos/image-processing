@@ -1,20 +1,16 @@
-# Documentação
-# Link: https://scikit-image.org/docs/stable/auto_examples/transform/plot_rescale.html#sphx-glr-auto-examples-transform-plot-rescale-py
-
-import matplotlib.pyplot as plt
-
-from skimage.transform import rescale, resize, downscale_local_mean
-
-from skimage.color import rgb2gray
-
+# Filter link: https://scikit-image.org/docs/stable/auto_examples/transform/plot_rescale.html#sphx-glr-auto-examples-transform-plot-rescale-py
 from PIL import Image
 from numpy import asarray
+from skimage.color import rgb2gray
+from skimage.transform import rescale, resize, downscale_local_mean
+import matplotlib.pyplot as plt
 
 # Open the image form working directory
-file_image = Image.open("images/ppkeise.jpeg")
+image_file = Image.open("images/ppkeise.jpeg")
 
 # convert image to numpy array
-image_multicolor = asarray(file_image)
+image_multicolor = asarray(image_file)
+
 # convert image to shades of gray
 image = rgb2gray(image_multicolor)
 
@@ -28,23 +24,23 @@ image_resized = resize(
 # Número de amostras
 image_downscaled = downscale_local_mean(image, (5, 4))
 
-fig, axes = plt.subplots(nrows=2, ncols=2)
+_, figures = plt.subplots(nrows=2, ncols=2)
 
-ax = axes.ravel()
+figure = figures.ravel()
 
-ax[0].imshow(image, cmap="gray")
-ax[0].set_title("Original image")
+figure[0].imshow(image, cmap="gray")
+figure[0].set_title("Original image")
 
-ax[1].imshow(image_rescaled, cmap="gray")
-ax[1].set_title("Rescaled image (aliasing)")
+figure[1].imshow(image_rescaled, cmap="gray")
+figure[1].set_title("Rescaled image (aliasing)")
 
-ax[2].imshow(image_resized, cmap="gray")
-ax[2].set_title("Resized image (no aliasing)")
+figure[2].imshow(image_resized, cmap="gray")
+figure[2].set_title("Resized image (no aliasing)")
 
-ax[3].imshow(image_downscaled, cmap="gray")
-ax[3].set_title("Downscaled image (no aliasing)")
+figure[3].imshow(image_downscaled, cmap="gray")
+figure[3].set_title("Downscaled image (no aliasing)")
 
-ax[0].set_xlim(0, 512)
-ax[0].set_ylim(512, 0)
+figure[0].set_xlim(0, 512)
+figure[0].set_ylim(512, 0)
 plt.tight_layout()
 plt.show()
