@@ -1,9 +1,22 @@
 # Link Base: https://learnopencv.com/multitracker-multiple-object-tracking-using-opencv-c-python/
 import cv2
 import sys
+from PIL import Image
+from numpy import asarray
 from random import randint
+from skimage.exposure import match_histograms
 
 cap = cv2.VideoCapture(0)
+image = Image.open("images/pp.jpg")
+image_reference = asarray(image)
+
+
+def scale_gray(frame):
+    return cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+
+def scale_filter(frame):
+    return match_histograms(frame, image_reference, multichannel=True)
 
 
 def selectROIfromFrame(frame):
@@ -14,10 +27,13 @@ def selectROIfromFrame(frame):
 
 
 if __name__ == "__main__":
-    #
-    # first_frame = cv2.imread("images/pp.jpg")
 
     conect, first_frame = cap.read()
+    # Gray Scale
+    # first_frame = scale_gray(first_frame)
+
+    # Match Histogram Scale
+    # first_frame = scale_filter(first_frame)
 
     if not conect:
         sys.exit()
@@ -44,8 +60,15 @@ if __name__ == "__main__":
         multiTracker.add(cv2.legacy.TrackerCSRT_create(), first_frame, bbox)
 
     index = 1
+    print("Press x to quit")
     while cap.isOpened():
         conect, frame = cap.read()
+
+        # Gray Scale
+        # frame = scale_gray(frame)
+
+        # Match Histogram Scale
+        # frame = scale_filter(frame)
 
         if not conect:
             break
