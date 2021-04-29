@@ -32,6 +32,7 @@ figure.tight_layout()
 
 # Cut
 hue_threshold = 0.1
+
 binary_img = image_hsv_hue > hue_threshold
 
 figure, (figure_sub_1, figure_sub_2) = plt.subplots(ncols=2, figsize=(8, 3))
@@ -48,7 +49,7 @@ figure.tight_layout()
 
 figure, figure_sub_1 = plt.subplots(figsize=(4, 3))
 
-value_threshold = 0.10
+value_threshold = 0.1
 binary_img = (image_hsv_hue > hue_threshold) | (image_hsv_value < value_threshold)
 
 figure_sub_1.imshow(binary_img)
